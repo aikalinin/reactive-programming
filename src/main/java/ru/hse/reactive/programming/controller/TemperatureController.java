@@ -22,6 +22,9 @@ public class TemperatureController {
 
     private final Set<SseEmitter> clients = new CopyOnWriteArraySet<>();
 
+    /**
+     * Create and store emitter for the client
+     */
     @GetMapping("/temperature-stream")
     public SseEmitter events(HttpServletRequest request) {
         SseEmitter emitter = new SseEmitter();
@@ -34,6 +37,9 @@ public class TemperatureController {
         return emitter;
     }
 
+    /**
+     * Send a temperature value to each client
+     */
     @Async
     @EventListener
     public void handleMessage(Temperature temperature) {

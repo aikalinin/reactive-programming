@@ -15,11 +15,14 @@ public class RxTemperatureController {
 
     private final RxTemperatureSensor temperatureSensor;
 
+    /**
+     * Subscribe a client to the temperature stream
+     */
     @GetMapping("/rx-temperature-stream")
     public SseEmitter events(HttpServletRequest request) {
         RxSeeEmitter emitter = new RxSeeEmitter();
 
-        temperatureSensor.temperatureStream().subscribe(emitter.getSubscriber());
+        temperatureSensor.getDataStream().subscribe(emitter.getSubscriber());
 
         return emitter;
     }

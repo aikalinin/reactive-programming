@@ -16,11 +16,10 @@ import static java.util.concurrent.TimeUnit.SECONDS;
 @Slf4j
 @Component
 public class TemperatureSensor {
-    private final ApplicationEventPublisher publisher;
-
     private final Random rnd = new Random();
-    private final ScheduledExecutorService executor =
-            Executors.newSingleThreadScheduledExecutor();
+
+    private final ApplicationEventPublisher publisher;
+    private final ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
 
     public TemperatureSensor(ApplicationEventPublisher publisher) {
         this.publisher = publisher;
